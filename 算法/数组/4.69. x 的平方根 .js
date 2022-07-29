@@ -1,6 +1,8 @@
 //69  https://leetcode.cn/problems/sqrtx/
 
 
+// [0,x] 来进行二分查找，但是需要注意的是返回的是right
+
 /**
  * @param {number} x
  * @return {number}
