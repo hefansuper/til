@@ -17,6 +17,7 @@ var searchRange = function (nums, target) {
     while (left <= right) {
       let middle = Math.floor((left + right) / 2)
 
+      // 哪个地方设置leftBorder，哪里就是=
       if (nums[middle] >= target) {
         right = middle - 1;
         leftBorder = right;
@@ -37,6 +38,7 @@ var searchRange = function (nums, target) {
       if (nums[mid] > target) {
         right = mid - 1;
       } else {
+        // 哪个地方设置rightBorder，哪里就是=
         left = mid + 1;
         rightBorder = left;
       }
