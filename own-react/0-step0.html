@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible"
+    content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    const element = {
+      type: 'h1',
+      props: {
+        title: "foo",
+        children: "Hello",
+      }
+    }
+
+    // 生成外面的节点。
+    const node1 = document.createElement(element.type);
+    node1['title'] = element.props.title;
+
+    // 生成里面的节点。是一个string。所以直接生成一个文本节点。
+    const children1 = document.createTextNode(element.props.children)
+
+    // 把children1丢到node1里面
+    node1.appendChild(children1);
+
+    // 把node1丢到root里面
+    const root = document.getElementById('root');
+    root.appendChild(node1);
+
+  </script>
+
+</body>
+
+</html>
