@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible"
+    content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script crossorigin
+    src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin
+    src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script>
+
+    // 本节的目的是学会自己写一个createElement。
+
+    const Didact = {
+      createElement
+    }
+
+    function createTextElement(text) {
+      return {
+        type: 'TEXT_ELEMENT',
+        props: {
+          nodeValue: text,
+          children: []
+        }
+      }
+    }
+
+    function createElement(type, props, ...children) {
+      return {
+        type,
+        children: {
+          ...props,
+          children: children.map((child) => {
+            // 如果children为空，或者children是对象，那么就直接返回。
+            // 如果基础类型，string或者number，就生成一个特殊的type来表示。
+            return typeof child === 'object' ? child : createTextElement(child)
+          })
+        }
+      }
+    }
+
+    const element = Didact.createElement(
+      "div",
+      { id: "foo" },
+      Didact.createElement("a", null, { 11: 11, 22: 22 }),
+      Didact.createElement("b")
+    )
+    const container = document.getElementById("root")
+    console.log(element, 'element')
+    ReactDOM.render(element, container)
+
+  </script>
+
+</body>
+
+</html>
